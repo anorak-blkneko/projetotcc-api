@@ -154,6 +154,9 @@ function Send()
 function Send() {
   var mensage = $("#inputtype").val();
   nome = mensage;
+  if ($.trim(mensage) == '') {
+    return false;
+  }
   $('<div class="message message-personal">' + mensage + "</div>")
     .appendTo($(".messages"))
     .addClass("new");
