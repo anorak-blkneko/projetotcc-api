@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-useless-concat */
 import "./index.css";
 import $ from "jquery";
 var flowchat = 0;
