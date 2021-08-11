@@ -10,6 +10,28 @@ html, body {
     overflow: hidden;
   }
 
+  /* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px grey;
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
+}
+
+.button{
+  background: linear-gradient(120deg, #103641, #0e3f24);
+}
+
+
   .bg {
     width: 100%;
     height: 100%;
