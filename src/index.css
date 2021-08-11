@@ -161,3 +161,6 @@ html, body {
     margin-right: 10px;
   }
 
+  .input-group-field{
+    height: 40px;
+  }
