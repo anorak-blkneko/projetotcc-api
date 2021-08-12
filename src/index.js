@@ -2,6 +2,7 @@
 /* eslint-disable no-useless-concat */
 import "./index.css";
 import $ from "jquery";
+
 var flowchat = 0;
 var nome = "";
 var choose = "";
@@ -300,3 +301,27 @@ function Flowchat() {
     }
   }
 }
+
+/*
+const {Client} = require('pg')
+
+const client = new Client({
+    host: "localhost",
+    user: "Augusto",
+    port: 5432,
+    password: "super4848",
+    database: "tccdb"
+})
+*/
+
+(async () => {
+  const db = require("./db");
+  console.log('Começou!');
+
+  console.log('SELECT * FROM CLIENTES');
+  //const clientes = await db.selectCustomers();
+  const clientes = await db.selectotostring();
+  //console.log(clientes);
+})();
+
+
