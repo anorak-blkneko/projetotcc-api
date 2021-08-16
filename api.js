@@ -8,6 +8,22 @@ app.listen(3300, ()=>{
 
 client.connect();
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true}))
+
+const cors = require('cors');
+app.use((req, res, next) => {
+	//Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
+    res.header("Access-Control-Allow-Origin", "*");
+	//Quais são os métodos que a conexão pode realizar na API
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+    app.use(cors());
+    next();
+});
+
+
+//------------- API USUARIOS -----------------------------------
+
 
 
 app.get('/usuarios', (req, res)=>{
@@ -33,8 +49,7 @@ app.get('/usuarios/:id', (req, res)=>{
 //const bodyParser = require("body-parser");
 //app.use(bodyParser.json());
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true}))
+
 
 
 app.post('/usuarios', (req, res)=> {
@@ -83,3 +98,80 @@ app.delete('/usuarios/:id', (req, res)=> {
     })
     client.end;
 })
+
+//-------------------- FIM API USUARIOS ---------------------------------------------------------
+
+//------------- API FALAS -----------------------------------
+
+
+
+app.get('/falas', (req, res)=>{
+    client.query(`Select * from falas`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+})
+
+
+
+app.get('/falas/:id', (req, res)=>{
+    client.query(`Select * from falas where fala=${req.params.id}`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+})
+
+//const bodyParser = require("body-parser");
+//app.use(bodyParser.json());
+
+
+
+
+app.post('/falas', (req, res)=> {
+    const usuarios = req.body;
+    var textfala = req.body.text_fala;
+    let insertQuery = `insert into falas("text_fala") 
+                       values('${textfala}')`
+
+    client.query(insertQuery, (err, result)=>{
+        if(!err){
+            res.send('Insertion was successful')
+        }
+        else{ console.log(err.message), console.log(textfala)}
+    })
+    client.end;
+})
+
+
+app.put('/falas/:id', (req, res)=> {
+    let user = req.body;
+    let updateQuery = `update falas
+                       text_fala = '${user.text_fala}'
+                       where id_fala = ${user.id_usuario}`
+
+    client.query(updateQuery, (err, result)=>{
+        if(!err){
+            res.send('Update was successful')
+        }
+        else{ console.log(err.message) }
+    })
+    client.end;
+})
+
+app.delete('/falas/:id', (req, res)=> {
+    let insertQuery = `delete from falas where id_fala=${req.params.id}`
+
+    client.query(insertQuery, (err, result)=>{
+        if(!err){
+            res.send('Deletion was successful')
+        }
+        else{ console.log(err.message) }
+    })
+    client.end;
+})
+
+//-------------------- FIM API FALAS ---------------------------------------------------------

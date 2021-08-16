@@ -1,7 +1,8 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-useless-concat */
 import "./index.css";
-import $ from "jquery";
+import $, { getJSON } from "jquery";
+import { json } from "body-parser";
 
 var flowchat = 0;
 var nome = "";
@@ -314,14 +315,33 @@ const client = new Client({
 })
 */
 
-(async () => {
-  const db = require("./db");
-  console.log('Começou!');
+//---------------------------------------------------
 
-  console.log('SELECT * FROM CLIENTES');
-  //const clientes = await db.selectCustomers();
-  const clientes = await db.selectotostring();
-  //console.log(clientes);
-})();
+document.getElementById('btnapi').addEventListener('click', loadREST);
+
+function loadREST() {
+  //fetch('http://localhost:3300/usuarios/' + flowchat)
+  fetch('http://localhost:3300/usuarios/')
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    console.log(data);
+
+    
+
+    var obj = data[flowchat].nome_usuario;
+
+    console.log(obj)
+    
+    
+    
+    
+  })
+  .catch(function(error){
+    console.log(error);
+  })
+}
+
 
 

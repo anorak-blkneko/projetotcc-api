@@ -38,5 +38,3 @@ async function selectCustomers() {
 
  
 module.exports = { selectCustomers }
-module.exports = { selecttojson }
-module.exports = { selectotostring }
