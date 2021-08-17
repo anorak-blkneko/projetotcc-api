@@ -1,173 +1,198 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-useless-concat */
 import "./index.css";
-import $, { getJSON } from "jquery";
-import { json } from "body-parser";
+import $ from "jquery";
 
 var flowchat = 0;
-var nome = "";
-var choose = "";
-var choose2 = "";
+var newMessage; //'if i see this, this is an error';
+var Fala;
 
 document.getElementById("btn1").disabled = true;
 document.getElementById("btn1").style.visibility = "hidden";
 document.getElementById("btn2").disabled = true;
 document.getElementById("btn2").style.visibility = "hidden";
+//document.getElementById('btnapi').addEventListener('click', loadREST);
 
-$(".message-submit").ready(function () {
-  $('<div class="message new">' + "Olá, qual seu nome?" + "</div>")
+
+
+
+
+
+
+function loadREST() {
+  //fetch('http://localhost:3300/usuarios/' + flowchat)
+  fetch('http://localhost:3300/falas/')
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    console.log(data);
+
+    
+
+    var obj = data[0].text_fala;
+
+    console.log(obj)
+    newMessage = JSON.stringify(obj);
+    console.log('new message:' + newMessage);
+
+    return newMessage;
+    
+    
+    
+  })
+  .catch(function(error){
+    console.log(error);
+  })
+
+  
+}
+
+
+async function fetchDataFalas(){
+  let response = await fetch('http://localhost:3300/falas/');
+  let data = await response.json();
+  data = JSON.stringify(data);
+  data = JSON.parse(data);
+  return data;
+ }
+
+
+ async function ReadyPost() {
+  let getdata = await fetchDataFalas(); // here the data will be return.
+  console.log(getdata); // you are using async await then no need of .then().
+  $('<div class="message new">' + getdata[0].text_fala  + "</div>")
     .appendTo($(".messages"))
     .addClass("new");
-});
 
-$("#btn1").click(function () {
-  //--------------WHATSAPP PART--------------------
+    flowchat = 1;
+    Flowchat(flowchat);
+ }
 
-  if (flowchat == 2) {
-    //WHATSAPP
 
-    $('<div class="message message-personal">' + "Whatsapp" + "</div>")
-      .appendTo($(".messages"))
-      .addClass("new");
-
-    flowchat++;
-    choose = "whatsapp";
-    Flowchat();
-    return;
-  }
-
-  if (choose == "whatsapp") {
-    if (flowchat == 3) {
-      //FOTOS
-      $('<div class="message message-personal">' + "Enviar fotos" + "</div>")
-        .appendTo($(".messages"))
-        .addClass("new");
-
-      flowchat++;
-      choose2 = "fotos";
-      Flowchat();
-      return;
-    }
-  }
-
-  //------------------- WHASTAPP PART END ---------------------------
-
-  //-------------------- G-MAIL PART -------------------------
-
-  if (choose == "gmail") {
-    if (flowchat == 3) {
-      //ENVIAR EMAILS
-
-      $('<div class="message message-personal">' + "Enviar emails" + "</div>")
-        .appendTo($(".messages"))
-        .addClass("new");
-
-      flowchat++;
-      choose2 = "enviarmail";
-      Flowchat();
-      return;
-    }
-  }
-
-  //----------------------- G-MAIL PART END ---------------------
-});
-
-$("#btn2").click(function () {
-  // ----------------- WHATSAPP PART ------------------
-
-  if (choose == "whatsapp") {
-    if (flowchat == 3) {
-      //CONTATOS
-      $(
-        '<div class="message message-personal">' +
-          "Compartilhar contatos" +
-          "</div>"
-      )
-        .appendTo($(".messages"))
-        .addClass("new");
-
-      flowchat++;
-      choose2 = "contatos";
-      Flowchat();
-      return;
-    }
-  }
-
-  // ------------------ WHATSAPP PART END ----------------
-
-  // ------------------ G-MAIL PART ---------------
-
-  if (flowchat == 2) {
-    //GMAIL
-
-    $('<div class="message message-personal">' + "G-Mail" + "</div>")
-      .appendTo($(".messages"))
-      .addClass("new");
-
-    flowchat++;
-    choose = "gmail";
-    Flowchat();
-    return;
-  }
-
-  if (choose == "gmail") {
-    if (flowchat == 3) {
-      $('<div class="message message-personal">' + "Anexar Arquivos" + "</div>")
-        .appendTo($(".messages"))
-        .addClass("new");
-
-      flowchat++;
-      choose2 = "anexo";
-      Flowchat();
-      return;
-    }
-  }
-
-  // -------------- G-MAIL PART END ------------
-});
-
-// --- NOT WORKING
-$("#typesend").keypress(function (event) {
-  if (event.which == 13) Send();
-});
-
-//--- OLD ONE
-/*
-$('.message-submit').click(function() {
-    Send();
-});
-*/
-
-$("#typesend").click(function () {
+ $("#typesend").click(function () {
   Send();
 });
 
-/*
-function Send()
-{
-  mensage = $('.message-input').val();
-  nome = mensage;
-  $('<div class="message message-personal">' + mensage + '</div>').appendTo($('.messages')).addClass('new');
-  flowchat ++;
-  Flowchat();
-}
-*/
 
-function Send() {
+
+
+$(".message-submit").ready(function () {
+  //SetFlowchatAnswers(); //
+  ReadyPost(); //ao carregar a página chmará a função da mensagem inicial
+}); 
+
+
+
+
+$("#btn1").click(function () {
+ 
+  switch(flowchat){
+    case 1:
+      //code
+
+
+      $('<div class="message message-personal">' + document.getElementById("btn1").value + "</div>")
+      .appendTo($(".messages"))
+      .addClass("new");
+      Flowchat(flowchat);
+    break;
+    case 2:
+      //Gmail: enviar e-mail
+      flowchat = 3;
+
+      $('<div class="message message-personal">' + document.getElementById("btn1").value + "</div>")
+      .appendTo($(".messages"))
+      .addClass("new");
+      Flowchat(flowchat);
+    break;
+  }
+
+  
+});
+
+
+
+
+
+$("#btn2").click(function () {
+  
+  switch(flowchat){
+    case 1:
+      flowchat = 2;
+
+      $('<div class="message message-personal">' + document.getElementById("btn2").value + "</div>")
+      .appendTo($(".messages"))
+      .addClass("new");
+      Flowchat(flowchat);
+    break;
+    case 2:
+      //Gmail anexar arquivos
+
+      $('<div class="message message-personal">' + document.getElementById("btn2").value + "</div>")
+      .appendTo($(".messages"))
+      .addClass("new");
+      Flowchat(flowchat);
+    break;
+  }
+  
+
+});
+
+
+
+
+
+
+async function Send() {
   var mensage = $("#inputtype").val();
-  nome = mensage;
+  //nome = mensage;
   if ($.trim(mensage) == '') {
     return false;
   }
   $('<div class="message message-personal">' + mensage + "</div>")
     .appendTo($(".messages"))
     .addClass("new");
-  flowchat++;
+  //flowchat++;
   document.getElementById("inputtype").value = '';
-  Flowchat();
+  Flowchat(flowchat);
 }
 
-function Flowchat() {
+
+
+
+async function Flowchat(index) {
+  let getdata = await fetchDataFalas(); // here the data will be return.
+
+  Fala = $('<div class="message new">' + getdata[index].text_fala  + "</div>").appendTo($(".messages")).addClass("new");
+
+  switch(index){
+    case 1:
+      //HABILITA A PRIMEIRO PERGUNTA SOBRE G-MAIL OU WHATSAPP
+      document.getElementById("inputtype").disabled = true;
+      document.getElementById("typesend").disabled = true;
+
+      document.getElementById("btn1").style.visibility = "visible";
+      document.getElementById("btn2").style.visibility = "visible";
+
+      document.getElementById("btn1").value = "WhatsApp";
+      document.getElementById("btn2").value = "G-Mail";
+
+      document.getElementById("btn1").disabled = false;
+      document.getElementById("btn2").disabled = false;
+    break;
+
+    case 2:
+      document.getElementById("btn1").value = "Enviar e-mails";
+      document.getElementById("btn2").value = "Anexar arquivos ao e-mail";
+    break;
+
+
+    
+  }
+
+
+  /*
   if (flowchat == 1)
     $(
       '<div class="message new">' +
@@ -255,7 +280,7 @@ function Flowchat() {
     if (flowchat == 3) {
       $(
         '<div class="message new">' +
-          "G-Mail, claro, sobre o que você quer saber ?" +
+          "G-mail, claro, sobre o que você quer saber ?" +
           "</div>"
       )
         .appendTo($(".messages"))
@@ -301,47 +326,17 @@ function Flowchat() {
       }
     }
   }
+  */
 }
 
-/*
-const {Client} = require('pg')
 
-const client = new Client({
-    host: "localhost",
-    user: "Augusto",
-    port: 5432,
-    password: "super4848",
-    database: "tccdb"
-})
-*/
 
 //---------------------------------------------------
 
-document.getElementById('btnapi').addEventListener('click', loadREST);
 
-function loadREST() {
-  //fetch('http://localhost:3300/usuarios/' + flowchat)
-  fetch('http://localhost:3300/usuarios/')
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(data){
-    console.log(data);
 
-    
 
-    var obj = data[flowchat].nome_usuario;
 
-    console.log(obj)
-    
-    
-    
-    
-  })
-  .catch(function(error){
-    console.log(error);
-  })
-}
 
 
 
