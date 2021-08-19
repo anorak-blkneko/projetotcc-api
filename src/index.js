@@ -160,7 +160,7 @@ async function Send() {
 
 
 
-
+//LEMBRAR: O ARRAY DO JSON COMEÇA EM 0, ENTÃO TODAS AS FALAS DO FLOWCHAR SÃO ID-1 DO BANCO DE DADOS
 async function Flowchat(index) {
   let getdata = await fetchDataFalas(); // here the data will be return.
 
@@ -187,9 +187,29 @@ async function Flowchat(index) {
       document.getElementById("btn2").value = "Anexar arquivos ao e-mail";
     break;
 
+    case 3:
+      tutorialEnviarEmail();
+    break;
 
     
   }
+
+  function tutorialEnviarEmail() {
+    Fala = $('<div class="message new">' + getdata[4].text_fala  + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + getdata[5].text_fala  + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + '<img src="./gmail1.jpg" alt="">' + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + getdata[6].text_fala  + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + '<img src="./gmail2.jpg" alt="">' + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + getdata[7].text_fala  + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + '<img src="./gmail3.jpg" alt="">' + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + getdata[8].text_fala  + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + '<img src="./gmail4.jpg" alt="">' + "</div>").appendTo($(".messages")).addClass("new");
+    Fala = $('<div class="message new">' + getdata[9].text_fala  + "</div>").appendTo($(".messages")).addClass("new");
+
+    
+  }
+
+
 
 
   /*
