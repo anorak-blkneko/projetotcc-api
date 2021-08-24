@@ -2,10 +2,10 @@
   "name": "projetotcc",
   "version": "1.0.0",
   "description": "Projto para o TCC",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "Augusto e Renan",
   "license": "ISC",
@@ -13,7 +13,8 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "server": "^1.0.35"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
