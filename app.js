@@ -15,7 +15,8 @@ app.use(express.urlencoded({ extended: false})) //APENAS DADOS SIMPLES
 //PERMIÇÃO DO CORS
 app.use((req, res, next) => {
     res.header('Acess-Control-Allow-Origin', '*');
-    res.header('Acess-Control-Allow-Header', 'Content-Type, Origin, X-Requested-With, Authorization');
+    res.header('Acess-Control-Allow-Header', 'Content-Type, Origin, X-Requested-With, Authorization, Accept');
+    res.header('Access-Control-Allow-Credentials',  'true');
 
     if(req.method === 'OPTIONS'){
         res.header('Acess-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
