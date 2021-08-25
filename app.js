@@ -6,6 +6,8 @@ const cors = require('cors');
 
 const rotaUsuarios = require('./routes/usuarios');
 const rotaFalas = require('./routes/falas');
+const rotaImagens = require('./routes/imagens');
+const rotaTutoriais = require('./routes/tutoriais');
 
 //app.use(bodyParser.urlencoded({extended: false})); 
 //app.use(bodyParser.json()); 
@@ -39,6 +41,8 @@ app.use(morgan('dev'));
 
 app.use('/usuarios', rotaUsuarios);
 app.use('/falas', rotaFalas);
+app.use('/imagens', rotaImagens);
+app.use('/tutoriais', rotaTutoriais);
 
 
 
