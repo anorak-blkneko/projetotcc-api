@@ -4,10 +4,10 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const rotaUsuarios = require('../routes/usuarios');
-const rotaFalas = require('../routes/falas');
-const rotaImagens = require('../routes/imagens');
-const rotaTutoriais = require('../routes/tutoriais');
+const rotaUsuarios = require('./routes/usuarios');
+const rotaFalas = require('./routes/falas');
+const rotaImagens = require('./routes/imagens');
+const rotaTutoriais = require('./routes/tutoriais');
 
 //app.use(bodyParser.urlencoded({extended: false})); 
 //app.use(bodyParser.json()); 

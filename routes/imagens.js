@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const client = require('../connection/connection');
-//
+const client = require('../connection');
+
 client.connect();
 
 //GET DE TUDO
