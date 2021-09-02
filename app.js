@@ -8,6 +8,7 @@ const rotaUsuarios = require('./routes/usuarios');
 const rotaFalas = require('./routes/falas');
 const rotaImagens = require('./routes/imagens');
 const rotaTutoriais = require('./routes/tutoriais');
+const rotaFeedback = require('./routes/feedback');
 
 //app.use(bodyParser.urlencoded({extended: false})); 
 //app.use(bodyParser.json()); 
@@ -43,6 +44,7 @@ app.use('/usuarios', rotaUsuarios);
 app.use('/falas', rotaFalas);
 app.use('/imagens', rotaImagens);
 app.use('/tutoriais', rotaTutoriais);
+app.use('/feedbacks', rotaFeedback);
 
 
 
