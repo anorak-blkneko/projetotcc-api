@@ -51,7 +51,7 @@ router.patch('/:id', (req, res, next) =>{
     let updateQuery = `update imagens
                        id_tutorial = ${imagens.id_tutorial},
                        img_link = '${imagens.img_link}'
-                       where id_img = ${imagens.id}`
+                       where id_img = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){

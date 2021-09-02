@@ -55,7 +55,7 @@ router.patch('/:id', (req, res, next) =>{
                        set id_usuario = '${user.id}',
                        nome_usuario = '${user.nome}',
                        senha_usuario = '${user.senha}'
-                       where id_usuario = ${user.id}`
+                       where id_usuario = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){

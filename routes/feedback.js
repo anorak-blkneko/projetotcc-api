@@ -4,10 +4,10 @@ const client = require('../connection');
 
 client.connect();
 
-//RETORNA TODOS OS FALAS
+//GET DE TUDO
 router.get('/', (req, res, next) =>{
 
-    client.query(`Select * from falas`, (err, result)=>{
+    client.query(`Select * from feedback`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
@@ -16,10 +16,10 @@ router.get('/', (req, res, next) =>{
 
 });
 
-//RETORNA O FALAS NO ID
+//GET ID ESPECIFICO
 router.get('/:id', (req, res, next) =>{
 
-    client.query(`Select * from falas where fala=${req.params.id}`, (err, result)=>{
+    client.query(`Select * from feedback where id_fb=${req.params.id}`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
@@ -28,31 +28,27 @@ router.get('/:id', (req, res, next) =>{
 
 });
 
-//INSERI UM FALAS
+//INSERT
 router.post('/', (req, res, next) =>{
     
-    const usuarios = req.body;
-    var textfala = req.body.text_fala;
-    let insertQuery = `insert into falas("text_fala") 
-                       values('${textfala}')`
+    const feedbacks = req.body;
+    let insertQuery = `insert into feedback("id_tutorial", "descricao") values(${feedbacks.id_tutorial}, '${feedbacks.descricao}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
             res.send('Insertion was successful')
         }
-        else{ console.log(err.message), console.log(textfala)}
+        else{ console.log(err.message), console.log(feedbacks.descricao)}
     })
     client.end;
 
 });
 
-//ALTERA 
+//ALTER
 router.patch('/:id', (req, res, next) =>{
     
-    let user = req.body;
-    let updateQuery = `update falas
-                       text_fala = '${user.text_fala}'
-                       where id_fala = ${req.params.id}`
+    let feedbacks = req.body;
+    let updateQuery = `update feedback set id_fb = ${feedbacks.id}  id_tutorial = ${feedbacks.id_tutorial}, descricao = '${feedbacks.descricao}' where id_fb = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){
@@ -64,10 +60,10 @@ router.patch('/:id', (req, res, next) =>{
 
 });
 
-//DELETA
+//DELETE
 router.delete('/:id', (req, res, next) =>{
     
-    let insertQuery = `delete from falas where id_fala=${req.params.id}`
+    let insertQuery = `delete from feedback where id_fb=${req.params.id}`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
