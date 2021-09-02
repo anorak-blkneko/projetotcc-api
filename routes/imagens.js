@@ -48,7 +48,7 @@ router.post('/', (req, res, next) =>{
 router.patch('/:id', (req, res, next) =>{
     
     let imagens = req.body;
-    let updateQuery = `update imagens
+    let updateQuery = `update imagens set
                        id_tutorial = ${imagens.id_tutorial},
                        img_link = '${imagens.img_link}'
                        where id_img = ${req.params.id}`
