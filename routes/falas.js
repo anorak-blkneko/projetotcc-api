@@ -19,7 +19,7 @@ router.get('/', (req, res, next) =>{
 //RETORNA O FALAS NO ID
 router.get('/:id', (req, res, next) =>{
 
-    client.query(`Select * from falas where fala=${req.params.id}`, (err, result)=>{
+    client.query(`Select * from falas where id_fala=${req.params.id}`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
@@ -50,7 +50,7 @@ router.post('/', (req, res, next) =>{
 router.patch('/:id', (req, res, next) =>{
     
     let user = req.body;
-    let updateQuery = `update falas
+    let updateQuery = `update falas set
                        text_fala = '${user.text_fala}'
                        where id_fala = ${req.params.id}`
 
