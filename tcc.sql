@@ -33,13 +33,6 @@ CREATE TABLE imagens (
     img_link VARCHAR(300) NOT NULL
 );
 
---CREATE TABLE IMAGENS
-CREATE TABLE imagens (
-	id_img SERIAL PRIMARY KEY,
-	id_tutorial INT REFERENCES tutoriais (id_tutorial),
-    img_link VARCHAR(300) NOT NULL
-);
-
 --CREATE TABLE FEEDBACK
 CREATE TABLE feedback (
 	id_fb SERIAL PRIMARY KEY,

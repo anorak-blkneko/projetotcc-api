@@ -48,7 +48,7 @@ router.post('/', (req, res, next) =>{
 router.patch('/:id', (req, res, next) =>{
     
     let feedbacks = req.body;
-    let updateQuery = `update feedback set id_fb = ${feedbacks.id}  id_tutorial = ${feedbacks.id_tutorial}, descricao = '${feedbacks.descricao}' where id_fb = ${req.params.id}`
+    let updateQuery = `update feedback set id_fb = ${feedbacks.id},  id_tutorial = ${feedbacks.id_tutorial}, descricao = '${feedbacks.descricao}' where id_fb = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){
