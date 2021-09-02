@@ -48,7 +48,7 @@ router.post('/', (req, res, next) =>{
 router.patch('/:id', (req, res, next) =>{
     
     let tutoriais = req.body;
-    let updateQuery = `update tutoriais set id_tutorial = ${tutoriais.id}, nome_tutorial = '${tutoriais.nome_tutorial}' where id_tutorial = ${req.params.id}`
+    let updateQuery = `update tutoriais set id_tutorial = ${tutoriais.id_tutorial}, nome_tutorial = '${tutoriais.nome_tutorial}' where id_tutorial = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){
