@@ -46,7 +46,7 @@ app.use('/imagens', rotaImagens);
 app.use('/tutoriais', rotaTutoriais);
 app.use('/feedbacks', rotaFeedback);
 
-
+//teste for loading
 
 
 app.use((error, req, res, next) =>{
