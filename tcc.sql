@@ -55,11 +55,13 @@ INSERT INTO falas (text_fala) VALUES ('Posso recomendar estas duas opções:');
 INSERT INTO falas (text_fala) VALUES ('Gmail, claro, sobre o que você quer saber?');
 INSERT INTO falas (text_fala) VALUES ('Para enviar um e-mail utilizando o Gmail, basta seguir os seguintes passos:');
 INSERT INTO falas (text_fala) VALUES ('Primeiramente você precisa ter uma CONTA GOOGLE, para utilizar o Gmail, geralmente algo como "seunome@gmail.com"');
-INSERT INTO falas (text_fala) VALUES ('Em seguida entrar na sua conta colocando o email, como mostrado na imagem a seguir:');
-INSERT INTO falas (text_fala) VALUES ('E então colocar a senha do seu email, como mostrado na imagem a seguir:');
-INSERT INTO falas (text_fala) VALUES ('Agora que entramos no email, basta clicar no botão "ESCREVER", como mostrado na imagem a seguir:');
-INSERT INTO falas (text_fala) VALUES ('Uma janela deve aparecer, onde vc irá inserir para QUEM vc vai enviar o email, o assunto do email e no campo grande você irá escrever o email, como mostrado na imagem a seguir:');
-INSERT INTO falas (text_fala) VALUES ('Quando estiver tudo feito, basta clicar em enviar que seu email será enviado.');
+INSERT INTO falas (text_fala) VALUES ('Em seguida tocar no icone do aplicativo, como mostrado na imagem a seguir:');
+INSERT INTO falas (text_fala) VALUES ('E então clicar em escrever, no canto inferior direito, para escrever um novo e-mail.');
+INSERT INTO falas (text_fala) VALUES ('E então preencher os campos "para:" para quem você irá envar o e-mail, assunto e então escrever o e-mail, assim como mostrado na imagem a seguir:');
+INSERT INTO falas (text_fala) VALUES ('Com tudo preenchido basta clicar no botão azul, no canto superior direito da tela para enviar o e-mail.');
+INSERT INTO falas (text_fala) VALUES ('Caso ainda tenha dúvidas, você pode clicar neste botão vermelho para ver nosso video tutorial.');
+INSERT INTO falas (text_fala) VALUES ('Gostariamos de saber se este tutorial foi útil, poderia nos ajudar? basta clicar neste botão e dizer o que achou.');
+
 
 
 --INSERÇÃO DE TUTORIAIS
